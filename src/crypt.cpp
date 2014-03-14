@@ -21,8 +21,8 @@ Handle<Value> CryptHash(const Arguments& args) {
 	key->WriteAscii(c_key);
 	salt->WriteAscii(c_salt);
 	char *hash = crypt(c_key, c_salt);
-	delete c_key;
-	delete c_salt;
+	delete[] c_key;
+	delete[] c_salt;
 
 	return scope.Close(hash ? String::New(hash) : Undefined());
 }
